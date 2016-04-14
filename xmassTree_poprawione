@@ -140,11 +140,28 @@ public class Javadev1 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        int poziom=Integer.parseInt(JOptionPane.showInputDialog("Podaj wysokosc choinki"));
+        int poziom;
+        String kierunek;
         
-        String kierunek=JOptionPane.showInputDialog("podaj kierunek top/down/left/right");
+        try{
+        do
+        {
+          poziom=Integer.parseInt(JOptionPane.showInputDialog("Podaj wysokosc choinki"));
+          
+        }while((poziom<=0)||poziom>100||!(poziom%1==0));
+        
+        do
+        {
+           kierunek=JOptionPane.showInputDialog("podaj kierunek top/down/left/right"); 
+        }while(!(kierunek.equals("top")||kierunek.equals("down")||kierunek.equals("left")||kierunek.equals("right")));
+        
         
         xmastree(poziom,kierunek);
+        
+        }catch(Exception e){
+            System.out.println("złe dane "+e);
+        }
+        
         
     }
     
