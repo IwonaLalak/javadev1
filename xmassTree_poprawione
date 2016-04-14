@@ -1,0 +1,151 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javadev1;
+
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author iwona
+ */
+public class Javadev1 {
+
+
+    public static void xmastree(int poziom, String kierunek)
+    {
+        String tree=new String();
+        if(kierunek.equals("top"))
+        {
+            System.out.print(xmastreeTOP(poziom));
+        }
+        else if(kierunek.equals("down"))
+        {
+            System.out.print(xmastreeDOWN(poziom));
+        }
+        else if(kierunek.equals("left"))
+        {
+            System.out.print(xmastreeLEFT(poziom));
+        }
+        else if(kierunek.equals("right"))
+        {
+            System.out.print(xmastreeRIGHT(poziom));
+        }
+    }
+    
+    public static StringBuilder xmastreeTOP(int poziom)
+    {
+        StringBuilder tree=new StringBuilder();
+        
+        for(int i=0;i<poziom;i++)
+        {
+            tree.append(prints(poziom-i));
+            //for(int j=poziom-i;j>=0;j--)
+            //    tree.append(" ");
+            tree.append(printx(i+i+1));
+            tree.append(prints(poziom-i));
+            //for(int j=poziom-i;j>=0;j--)
+            //    tree.append(" ");
+            if(poziom!=1&&i!=poziom-1) tree.append("\n");
+        }
+        
+        return tree;
+    }
+    
+    public static StringBuilder xmastreeDOWN(int poziom)
+    {
+        StringBuilder tree=new StringBuilder();
+        
+        for(int i=poziom-1;i>=0;i--)
+        {
+            tree.append(prints(poziom-i));
+            //for(int j=poziom-i;j>=0;j--)
+            //    tree.append(" ");
+            tree.append(printx(i+i+1));
+            tree.append(prints(poziom-i));
+            //for(int j=poziom-i;j>=0;j--)
+            //    tree.append(" ");
+            if(poziom!=1&&i!=0) tree.append("\n");
+        }
+        
+        return tree;
+    }
+    
+    public static StringBuilder xmastreeLEFT(int poziom)
+    {
+        StringBuilder tree=new StringBuilder();
+        
+        for(int i=poziom-1;i>=0;i--)
+        {
+            tree.append(prints(i));
+            //for(int j=i;j>=0;j--)
+            //    tree.append(" ");
+            tree.append(printx(poziom-i));
+            if(poziom!=1) tree.append("\n");
+        }
+        for(int i=1;i<poziom;i++)
+        {
+            tree.append(prints(i));
+            //for(int j=i;j>=0;j--)
+            //    tree.append(" ");
+            tree.append(printx(poziom-i));
+            if(poziom!=1&&i!=poziom-1)tree.append("\n");
+        }
+        
+        return tree;
+    }
+    
+    public static StringBuilder xmastreeRIGHT(int poziom)
+    {
+        StringBuilder tree=new StringBuilder();
+        
+        for(int i=1;i<poziom;i++)
+        {
+            tree.append(printx(i));
+            tree.append(prints(poziom-i));
+            //for(int j=poziom-i;j>=0;j--)
+            //    tree.append(" ");
+            if(poziom!=1) tree.append("\n");
+        }
+        for(int i=poziom;i>0;i--)
+        {
+            tree.append(printx(i));
+            tree.append(prints(poziom-i));
+            //for(int j=poziom-i;j>=0;j--)
+            //    tree.append(" ");
+            if(poziom!=1&&i!=1) tree.append("\n");
+        }
+        
+        return tree;
+    }
+    
+    public static StringBuilder prints(int ilosc)
+    {
+        StringBuilder space=new StringBuilder();
+        for(int j=0;j<ilosc;j++)
+            space.append(' ');
+        return space;
+    }
+    
+    public static StringBuilder printx(int ilosc)
+    {
+        StringBuilder iksy=new StringBuilder();
+        for(int k=0;k<ilosc;k++)
+            iksy.append("x");
+        return iksy;
+    }
+    
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+        int poziom=Integer.parseInt(JOptionPane.showInputDialog("Podaj wysokosc choinki"));
+        
+        String kierunek=JOptionPane.showInputDialog("podaj kierunek top/down/left/right");
+        
+        xmastree(poziom,kierunek);
+        
+    }
+    
+}
